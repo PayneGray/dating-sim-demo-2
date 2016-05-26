@@ -2,7 +2,7 @@
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
-
+    call initialize
     jump dev_label
     #jump frisk_start
 
@@ -11,8 +11,9 @@ label start:
 
 label dev_label:
     show screen show_menu_button
-    show screen navigation_buttons
+    show screen show_nav_button
     while True:
+        "?"
         menu:
             "Where would you like to go?"
             "Undersnail":
