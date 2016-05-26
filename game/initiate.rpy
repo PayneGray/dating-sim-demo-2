@@ -22,10 +22,6 @@ label initialize:
     image flowey placeholder = "characters/flowey_ph.png"
     #toriel
     image toriel placeholder = "characters/toriel_ph.png"
-
-    #stupid stuff for demo
-    image wilson large = im.FactorScale("avatar.png",4.0)
-    image wilson ph = "avatar.png"
     #background-images
 
     #snowdin
