@@ -12,6 +12,7 @@ label start:
 label dev_label:
     show screen show_menu_button
     show screen show_nav_button
+    call toriel_house_staircase
     while True:
         "?"
         menu:
