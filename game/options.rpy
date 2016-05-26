@@ -25,6 +25,7 @@ init -1 python hide:
     config.name = "inLOVE: An Undertale Dating Simulator (Demo)"
     config.version = "0.0"
 
+    config.layers = [ 'master', 'transient', 'screens', 'overlay','ui']
     #########################################
     # Themes
 

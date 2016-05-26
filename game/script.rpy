@@ -12,7 +12,7 @@ label start:
 label dev_label:
     show screen show_menu_button
     show screen show_nav_button
-    call toriel_house_staircase
+    jump toriel_house_staircase
     while True:
         "?"
         menu:
@@ -36,3 +36,6 @@ label dev_label:
 label demo_end:
     "This demo ends here. Thanks for playing!"
     "Stay determined..."
+
+label the_end:
+return

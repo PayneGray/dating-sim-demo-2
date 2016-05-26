@@ -132,12 +132,9 @@ label toriel_house_toriel_room:
 label toriel_house_your_room:
     $ room_manager.move_to_room("Your Room") 
     scene background toriel_house_your_room
-    $ chance = room_manager.get_random_scene()
-    if chance:
-        $ renpy.call_in_new_context(chance)
-    while True:
-        "[room_manager.current_room.desc]"
-    return
+    $ renpy.call_in_new_context("wilson_label")
+    jump the_end
+
 
 label toriel_house_frisk_room:
     $ room_manager.move_to_room("Frisk's Room") 
@@ -187,3 +184,20 @@ label sans_random:
     hide sans normal
     with moveoutbottom
     return
+
+label wilson_label:
+    
+    show wilson down at Position(xpos=0.5,ypos=0.75)
+
+    wilson "So if sphaghetti==1 then pap needs to go. yeah that will work."
+    wilson "type type type type"
+    wilson "......"
+    hide wilson down
+    show wilson up at Position(xpos=0.5,ypos=0.75)
+    wilson "......"
+    hide wilson down
+    show wilson large
+    with vpunch
+    wilson "OMG GET OUT."
+
+    hide wilson down
