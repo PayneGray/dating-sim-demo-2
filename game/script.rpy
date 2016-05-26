@@ -11,6 +11,7 @@ label start:
 
 label dev_label:
     show screen show_menu_button
+    show screen navigation_buttons
     while True:
         menu:
             "Where would you like to go?"
