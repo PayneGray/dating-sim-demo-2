@@ -6,7 +6,7 @@ init -1 python:
             self.name = "Staircase"
             self.x = 100
             self.y = 100
-            self.desc = "There is a stairway here."
+            self.desc = "Welcome to the prototype. Find your favorite character hiding in the house! (We are testing random events)"
             self.scene = "toriel_house_staircase"
 
     class th_corridor(Room):
@@ -75,19 +75,21 @@ init -1 python:
     room_manager.add_room(th_toriel_room())
     
     room_manager.current_room = room_manager.rooms[0]
-
+    
 label toriel_house_corridor:
     scene background toriel_house_corridor
     while True:
-        '[room_manager.current_room.desc]'
         menu:
             "There are three doors here."
-            "Frisk":
+            "Frisk's Room":
                 jump toriel_house_frisk_room
-            "Toriel":
+            "Toriel's Room":
                 jump toriel_house_toriel_room
-            "Your":
-                jump toriel_house_your_room
+            "This one has a paw on it. You hear typing.":
+                if wilson_locked:
+                    "The door knob won't turn.  Surely there is some objective to this?"
+                else:
+                    jump toriel_house_your_room
     return
 
     
@@ -179,25 +181,51 @@ label sans_random:
     show sans normal
     with moveinbottom
     sans "Brah"
-    sans "Help"
-    sans "Me."
     hide sans normal
-    with moveoutbottom
+    show sans medium at Position(xpos=0.5, ypos=1.5)
+    sans "Help"
+    hide sans medium
+    show sans large at Position (xpos=0.5, ypos=3.5)
+    with hpunch
+    sans "Me."
+    hide sans large
+    
     return
 
 label wilson_label:
     
-    show wilson down at Position(xpos=0.5,ypos=0.75)
-
+    show wilson down at Position(xpos=0.7,ypos=0.75)
+    show papyrus disgust at right
+    stop music
+    play music 'audio/Nyeh_Heh_Heh.MP3'
     wilson "So if sphaghetti==1 then pap needs to go. yeah that will work."
-    wilson "type type type type"
-    wilson "......"
+    play sound "audio/typing.wav"
+    wilson "<type type type type>"
+    hide papyrus disgust
+    with dissolve
+    show papyrus bigsmile at right
+    with dissolve
+    papyrus "Hello Wilson!"
+    papyrus "You are my best fend! We should go on date with spaghetti! Like papyrus would!"
+    wilson "Fend?!?! <growl> That's not right...."
+    play sound "audio/typing.wav"
+    wilson "<type type type>"
+    stop sound
+    wilson "{cps=1}...{/cps}"
     hide wilson down
-    show wilson up at Position(xpos=0.5,ypos=0.75)
+    stop music
+    show wilson up at Position(xpos=0.7,ypos=0.75)
     wilson "......"
+    hide papyrus bigsmile
     hide wilson down
     show wilson large
     with vpunch
-    wilson "OMG GET OUT."
+    wilson "{cps=*3}OMG GET OUT!!!!!!{/cps}"
 
     hide wilson down
+    return
+label wilson_unlock:
+    "You hear a click from across the hallway. Is there someone else here?"
+    $ wilson_locked = False
+    
+    return

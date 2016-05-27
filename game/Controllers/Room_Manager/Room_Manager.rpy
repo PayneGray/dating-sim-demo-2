@@ -1,4 +1,5 @@
 init -1 python:
+    wilson_locked = True
     class Room():
         def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False):
             self.name = name
@@ -8,6 +9,7 @@ init -1 python:
             self.scene = "test_label"
             #place holder to stop people from moving into the room.
             self.locked = locked
+            
 
     class Room_Manager():
         def __init__(self):
@@ -63,10 +65,14 @@ init -1 python:
         def get_random_scene(self):
             
             s = False
-            if renpy.random.randint(0,100) < 50:
-                s = self.random_scenes[renpy.random.randint(0,len(self.random_scenes)-1)]
-                    #remove so it doesn't happen again
-                self.random_scenes.remove(s)
+            if len(self.random_scenes) > 0:
+                if renpy.random.randint(0,100) < 101:
+                    s = self.random_scenes[renpy.random.randint(0,len(self.random_scenes)-1)]
+                        #remove so it doesn't happen again
+                    self.random_scenes.remove(s)
+                    if len(self.random_scenes)==0 and wilson_locked:
+                        renpy.call_in_new_context("wilson_unlock") 
+                    return s
             return s
 
 
@@ -74,26 +80,34 @@ init -1 python:
 
 
 screen show_nav_button:
-    textbutton "Show Nav" action [Play ("sound", "audio/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("text-box3.png",50, 21)
-
+    textbutton "Show Nav (E)" action [Play ("sound", "audio/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("text-box3.png",50, 21)
+    key 'e' action [Play ("sound", "audio/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")]
 screen navigation_buttons:
     add "#0008"
     modal True
 
     $dirs = room_manager.cr_get_neighbors()
 
-    textbutton "Hide Nav" action [Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("text-box3.png",50, 21)
-    
+    textbutton "Hide Nav (E)" action [Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("text-box3.png",50, 21)
+    key 'e' action [Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
     if dirs.count('north') > 0:
-        textbutton "north" background Frame("text-box3.png",50, 21) align(0.5,0.0) action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'north')]
+        textbutton "north (w)" background Frame("text-box3.png",50, 21) align(0.5,0.0) action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'north')]
+        key 'w' action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'north')]
+
     if dirs.count('south') > 0:
-        textbutton "south" background Frame("text-box3.png",50, 21) align(0.5,1.0) action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'south')]
+        textbutton "south (s)" background Frame("text-box3.png",50, 21) align(0.5,1.0) action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'south')]
+        key 's' action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'south')]
+
     if dirs.count('east') > 0:
-        textbutton "east" background Frame("text-box3.png",50, 21) align(1.0,0.5)  action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'east')]
+        textbutton "east (d)" background Frame("text-box3.png",50, 21) align(1.0,0.5)  action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'east')]
+        key 'd' action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'east')]
+
     if dirs.count('west') > 0:
-        textbutton "west" background Frame("text-box3.png",50, 21) align(0.00,0.5) action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'west')]
+        textbutton "west (a)" background Frame("text-box3.png",50, 21) align(0.00,0.5) action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'west')]
+        key 'a' action[Play ("sound", "audio/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'west')]
 
     text '[room_manager.current_room.name]' align(0.5,0.5)
+
 
 
 
