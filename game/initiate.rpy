@@ -18,11 +18,15 @@ label initialize:
     image sans sad = "characters/sans-sad.png"
     image sans silhouette = "characters/sans-shakemyhand.png"
     image sans shakehand = "characters/sans-shakemyhand2.png"
+
+
     #flowey
     image flowey placeholder = "characters/flowey_ph.png"
     #toriel
     image toriel placeholder = "characters/toriel_ph.png"
 
+    image sans medium = im.FactorScale("characters/sans-normal.png",2.0)
+    image sans large = im.FactorScale("characters/sans-normal.png",5.0)
     image wilson down = "avatar2.png"
     image wilson up = "avatar1.png"
     image wilson large = im.FactorScale("avatar1.png",4.0)
