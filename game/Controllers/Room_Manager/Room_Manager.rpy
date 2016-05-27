@@ -70,9 +70,10 @@ init -1 python:
                     s = self.random_scenes[renpy.random.randint(0,len(self.random_scenes)-1)]
                         #remove so it doesn't happen again
                     self.random_scenes.remove(s)
-                    if len(self.random_scenes)==0 and wilson_locked:
-                        renpy.call_in_new_context("wilson_unlock") 
+                    if len(self.random_scenes) == 0 and wilson_locked:
+                        renpy.call_in_new_context("wilson_unlock")
                     return s
+            
             return s
 
 
