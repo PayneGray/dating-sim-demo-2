@@ -72,13 +72,13 @@ init python:
         def __init__(self):
            
             renpy.Displayable.__init__(self)
-            self.name = "Sans"
+            self.name = ""
 
             #are we done with the naming period
             self.done = False
             self.leave = False
             #show the confirm screen
-            self.confirm = True
+            self.confirm = False
             #was the name rejected?
 
             self.oldst = 0
@@ -194,24 +194,30 @@ init python:
                     for l in self.letters:
                         if pygame.Rect(l.x,l.y,Text(l.let).size()[0],Text(l.let).size()[1]).collidepoint(x,y):
                             self.name += l.let
+                            renpy.sound.play("audio/click.wav")
                     if self.quitbutton.isclicked(x,y):
+                        renpy.sound.play("audio/click.wav")
                         #quit
                         self.quit = True
                         return
                     if self.backspacebutton.isclicked(x,y):
+                        renpy.sound.play("audio/click.wav")
                         #backspace
                         if len(self.name) > 0:
                             self.name = self.name[:-1]
                         return
                     if self.donebutton.isclicked(x,y):
+                        renpy.sound.play("audio/click.wav")
                         #done
                         self.confirm = True
                         return
                 else:
                     if self.yesbutton.isclicked(x,y):
+                        renpy.sound.play("audio/click.wav")
                         self.done = True
                         return
                     if self.nobutton.isclicked(x,y) or self.backbutton.isclicked(x,y):
+                        renpy.sound.play("audio/click.wav")
                         self.confirm = False
 
                 
