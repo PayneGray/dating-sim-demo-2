@@ -182,6 +182,10 @@ init python:
         def get_response(self,name):
             if name.lower() == 'papyrus':
                 return "I'LL ALLOW IT!!!!"
+            elif name.lower() == 'sempai' or name.lower() == 'senpai':
+                return "NOTICE ME!"
+            elif name.lower() == 'wilson':
+                return "The best name of all."
             else:
                 return False
 
@@ -193,8 +197,9 @@ init python:
                 if not self.confirm:
                     for l in self.letters:
                         if pygame.Rect(l.x,l.y,Text(l.let).size()[0],Text(l.let).size()[1]).collidepoint(x,y):
-                            self.name += l.let
-                            renpy.sound.play("audio/click.wav")
+                            if len(self.name) < 15:
+                                self.name += l.let
+                                renpy.sound.play("audio/click.wav")
                     if self.quitbutton.isclicked(x,y):
                         renpy.sound.play("audio/click.wav")
                         #quit
@@ -207,9 +212,10 @@ init python:
                             self.name = self.name[:-1]
                         return
                     if self.donebutton.isclicked(x,y):
-                        renpy.sound.play("audio/click.wav")
-                        #done
-                        self.confirm = True
+                        if len(self.name) > 0:
+                            renpy.sound.play("audio/click.wav")
+                            #done
+                            self.confirm = True
                         return
                 else:
                     if self.yesbutton.isclicked(x,y):
