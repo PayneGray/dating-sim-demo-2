@@ -9,6 +9,7 @@ init -1 python:
             self.y = 100
             self.desc = "Welcome to the prototype. Find your favorite character hiding in the house! (We are testing random events)"
             self.scene = "toriel_house_staircase"
+            self.bg = "backgrounds/background-ruins-staircase.png"
 
     class th_corridor(Room):
         def __init__(self):
@@ -93,7 +94,6 @@ label toriel_house_corridor:
                     jump toriel_house_your_room
     return
 
-    
 
 label toriel_house_kitchen:
     scene background toriel_house_kitchen
@@ -103,7 +103,6 @@ label toriel_house_kitchen:
         $ chance = room_manager.get_random_scene()
         if chance:
             $ renpy.call_in_new_context(chance)
-    while True:
         "[room_manager.current_room.desc]"
     return
     
@@ -122,8 +121,8 @@ label toriel_house_living_room:
 label toriel_house_staircase :
     scene background toriel_house_staircase
     with fade
-    while True:
-        "[room_manager.current_room.desc]"
+    "[room_manager.current_room.desc]"
+    call screen test_screen
     return
     
 label toriel_house_toriel_room:

@@ -10,10 +10,10 @@ label start:
 
 
 label dev_label:
-    show screen show_menu_button
-    show screen show_nav_button
+    # show screen show_menu_button
+    # show screen show_nav_button
     play music 'audio/music-home.MP3'
-    jump toriel_house_staircase
+    jump Name_Select
     while True:
         "?"
         menu:

@@ -11,13 +11,28 @@ init python:
     import math
     import pygame
 
-    class quit_button():
-        def __init__(self,x = 0, y = 0):
+    class text_button():
+        def __init__(self,text = Text('text'), x = 0, y = 0):
+            self.text = Text(text)
             self.x = x
             self.y = y
-            self.text = Text("Quit")
-            self.rect = pygame.Rect(x,y,self.text.size()[0],self.text.size()[1])
-            
+            self.rect = pygame.Rect(x,y,text.size()[0],text.size()[1])
+
+        def setBounds(self):
+            self.rect = pygame.Rect(x,y,text.size()[0],text.size()[1])
+
+        def setPos(self,x,y):
+            self.x = x
+            self.y = y
+            self.setBounds()
+
+        def isclicked(self,x,y):
+            if self.rect.collidepoint(x,y):
+                return True
+            else:
+                return False
+
+
     class click_letter():
         def __init__(self,let = 'a',x = 0,y = 0):
             self.let = let
@@ -62,6 +77,8 @@ init python:
             self.done = False
             #show the confirm screen
             self.confirm = False
+            #was the name rejected?
+            self.rejected = False
 
             self.oldst = 0
 
@@ -72,7 +89,9 @@ init python:
             self.backspace = Text("Backspace")
             self.doneb = Text("Done")
             self.pname = Text(self.name)
-
+            self.yesb = Text("Yes")
+            self.nob = Text("No")
+            self.backb = Text("Go Back")
 
 
             #game width and height, probably need to figure out how to make this dynamic
@@ -202,9 +221,14 @@ init python:
                 r.blit(renpy.render(self.doneb,width,height,st,at),(width * .75 - self.doneb.size()[0]/2,height * .9))
             
             else:
-                r.blit(renpy.render(self.pname,width,height,st,at),(width/2 - self.pname.size()[0]/2,height/2 - self.pname.size()[1]/2))
-                r.blit
-            
+                r.blit(renpy.render(self.pname,width,height,st,at),(width/2 - self.pname.size()[0]/2,height/2 - self.pname.size()[1]/2))    
+                if not self.rejected:
+                    r.blit(renpy.render(self.yesb,width,height,st,at),(width*.66 - self.yesb.size()[0]/2,height*.66))
+                    r.blit(renpy.render(self.nob,width,height,st,at),(width*.33 - self.nob.size()[0]/2,height*.66))
+                else:
+                    r.blit(renpy.render(self.yesb,width,height,st,at),(width*.66 - self.yesb.size()[0]/2,height*.66))
+
+
             # text_render = renpy.render(self.scoretext,width,height,st,at)
             # r.blit(text_render,(0.1,0.1))
 

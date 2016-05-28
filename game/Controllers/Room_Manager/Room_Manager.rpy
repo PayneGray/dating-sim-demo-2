@@ -1,7 +1,7 @@
 init -1 python:
     wilson_locked = True
     class Room():
-        def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False):
+        def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False, bg = 'nothing'):
             self.name = name
             self.x = x
             self.y = y
@@ -9,6 +9,7 @@ init -1 python:
             self.scene = "test_label"
             #place holder to stop people from moving into the room.
             self.locked = locked
+            self.bg = bg
             
 
     class Room_Manager():
