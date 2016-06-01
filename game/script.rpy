@@ -10,10 +10,11 @@ label start:
 
 
 label dev_label:
-    # show screen show_menu_button
-    # show screen show_nav_button
+    show screen show_menu_button
+    show screen show_nav_button
     play music 'audio/Intro_1-2.MP3'
-    jump Name_Select
+    #jump Name_Select
+    jump load_room
     while True:
         "?"
         menu:

@@ -47,17 +47,6 @@ label initialize:
     image background prologue1 = "backgrounds/prologue.jpg"
     image background intro = "backgrounds/background-intro.png"
 
-    #flowerbed
-    image background flowerfall = "backgrounds/background-ruins-flowerpatch.png"
-    image background floweyroom = "backgrounds/background-ruins-floweyroom.png"
-
-    #the ruins
-    image background ruins_outside_house = "backgrounds/background-ruins-blacktree.png"
-    image background ruins_froggit_room = "backgrounds/background-ruins-froggitroom.png"
-    image background ruins_first_entrance = "backgrounds/background-ruins-firstentrance.png"
-    image background ruins_toy_knife_room = "backgrounds/background-ruins-toykniferoom.png"
-    image background ruins_spider_bakery = "backgrounds/background-ruins-spiderbakery.png"
-
 
     #toriel house
     image background toriel_house_corridor = "backgrounds/background-ruins-corridor.png"

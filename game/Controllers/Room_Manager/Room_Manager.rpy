@@ -6,7 +6,6 @@ init -1 python:
             self.x = x
             self.y = y
             self.desc = desc
-            self.scene = "test_label"
             #place holder to stop people from moving into the room.
             self.locked = locked
             self.bg = bg
@@ -15,7 +14,7 @@ init -1 python:
     class Room_Manager():
         def __init__(self):
             self.rooms = []
-            self.random_scenes = ['papyrus_random','sans_random','toriel_random','flowey_random']
+            #self.random_scenes = ['papyrus_random','sans_random','toriel_random','flowey_random']
         
         def add_room(self,room):
             self.rooms.append(room)
@@ -43,7 +42,7 @@ init -1 python:
                 if not room.locked:
                     if room.x == dirx and room.y == diry:
                         self.current_room = room
-                        renpy.jump(room.scene)
+                        renpy.jump("load_room")
 
         def cr_get_neighbors(self):
             dirs = []
@@ -80,6 +79,14 @@ init -1 python:
 
     room_manager = Room_Manager()
 
+label load_room:
+    #scene background ruins_caveroom
+    $ renpy.scene()
+    $ renpy.show(room_manager.current_room.bg)
+    #with fade
+    while True:
+        "[room_manager.current_room.desc]"
+    return
 
 screen show_nav_button:
     textbutton "Show Nav (E)" action [Play ("sound", "audio/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("text-box3.png",50, 21)
