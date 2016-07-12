@@ -1,5 +1,7 @@
 label initialize:
     #papyrus
+
+    
     image papyrus normal = "characters/Character-Papyrus-Normal.png"
     image papyrus bigsmile = "characters/Character-Papyrus-BigSmile.png"
     image papyrus disgust = "characters/Character-Papyrus-disgust.png"
@@ -12,6 +14,9 @@ label initialize:
     image papyrus surprised = "characters/Character-Papyrus-Surprised.png"
     image papyrus suspicious = "characters/Character-Papyrus-suspicious.png"
     image papyrus unsure = "characters/Character-Papyrus-unsure.png"
+
+
+
     #sans
     image sans normal = "characters/sans-normal.png"
     image sans glance = "characters/sans-normal-glance.png"
@@ -20,6 +25,19 @@ label initialize:
     image sans shakehand = "characters/sans-shakemyhand2.png"
     #flowey
     image flowey placeholder = "characters/flowey_ph.png"
+
+    image flowey normal = "characters/floweyplaceholders/Character-Flowey-Normal.png"
+    image flowey angry = "characters/floweyplaceholders/Character-Flowey-Angry.png"
+    image flowey evil = "characters/floweyplaceholders/Character-Flowey-Evil.png"
+    image flowey surprised = "characters/floweyplaceholders/Character-Flowey-Surprise.png"
+    image flowey suspicious = "characters/floweyplaceholders/Character-Flowey-Suspicious.png"
+    image flowey back = "characters/floweyplaceholders/Character-Flowey-Back.png"
+    image flowey annoyed = "characters/floweyplaceholders/Character-Flowey-Annoyed.png"
+    image flowey bashful = "characters/floweyplaceholders/Character-Flowey-Bashful.png"
+    image flowey smug = "characters/floweyplaceholders/Character-Flowey-Smug.png"
+    image flowey wink = "characters/floweyplaceholders/Character-Flowey-Wink.png"
+
+
     #toriel
     image toriel placeholder = "characters/toriel_ph.png"
 
@@ -43,16 +61,7 @@ label initialize:
     image background prologue1 = "backgrounds/prologue.jpg"
     image background intro = "backgrounds/background-intro.png"
 
-    #flowerbed
-    image background flowerfall = "backgrounds/background-ruins-flowerpatch.png"
-    image background floweyroom = "backgrounds/background-ruins-floweyroom.png"
-
-    #the ruins
-    image background ruins_outside_house = "backgrounds/background-ruins-blacktree.png"
-    image background ruins_froggit_room = "backgrounds/background-ruins-froggitroom.png"
-    image background ruins_first_entrance = "backgrounds/background-ruins-firstentrance.png"
-    image background ruins_toy_knife_room = "backgrounds/background-ruins-toykniferoom.png"
-    image background ruins_spider_bakery = "backgrounds/background-ruins-spiderbakery.png"
+    image background floweyroomplaceholder = "backgrounds/placeholders/background-ruins-floweyroom.png"
 
 
     #toriel house
@@ -81,11 +90,14 @@ label initialize:
     define floweyChar = Character('Flowey', color="#FFFFFF")
     define torielChar = Character('Toriel', color="#FFFFFF")
     define wilsonChar = Character('Wilson', color="#FFFFFF")
+    define flowey = Character('Flowey', color="#FFFFFF")
+
     #sprite positions
     init:
         $ left = Position(xpos = 0.25, xanchor = 'left')
         $ center = Position(xpos = 0.5, xanchor = 'center')
         $ right = Position(xpos = 0.75, xanchor = 'right')
+
 
     init python:
         # Wrapper to capitalize Papyrus' text
@@ -108,4 +120,5 @@ label initialize:
         player = Player()
         day = 0
         menu_state = "stats"
-        
+        world = World()
+

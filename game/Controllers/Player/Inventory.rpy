@@ -45,13 +45,13 @@ init -1 python:
 
     #holds the description for the menu.  HAS to be a better way to do this
     menu_selected_item = False
-
+    #move to global portion of initiate.rpy later
     inventory = Inventory()
-
+    
 
 screen items:
         frame pos(0.3,0.05):
-            background Frame("text-box3.png",21, 21)
+            background Frame("UI/text-box3.png",21, 21)
             vbox:
                 for item in inventory.items:
                     if isinstance(item,Empty):
@@ -65,15 +65,15 @@ screen items:
       
                 hbox:
                     textbutton "Use":
-                        action [ui.callsinnewcontext("show_item_description")]
+                        action [If(menu_selected_item,ui.callsinnewcontext("show_item_description")),SetVariable("menu_selected_item",False)]
                         background "#000000"
 
                     textbutton "Info":
-                        action [ui.callsinnewcontext("show_item_description")]
+                        action [If(menu_selected_item,ui.callsinnewcontext("show_item_description")),SetVariable("menu_selected_item",False)]
                         background "#000000"
                         
                     textbutton "Drop":
-                        action [ui.callsinnewcontext("drop_item")]
+                        action [If(menu_selected_item,ui.callsinnewcontext("drop_item")),SetVariable("menu_selected_item",False)]
                         background "#000000"
                         
 
@@ -108,3 +108,28 @@ init -1 python:
             Item.__init__(self)
             self.name = "Heart Locket"
             self.pickup_text = "It doesn't seem to open, but it is pretty nonetheless, golden and strung on a red ribbon."
+
+    class Spider_Donut(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Donut"
+            self.pickup_text = "Made with real spiders."
+            self.cost = 7
+    class Spider_Cider(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Cider"
+            self.pickup_text = "Made with real spiders."
+            self.cost = 18
+    class Spider_Waffle(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Waffle"
+            self.pickup_text = "Made with real spiders."
+            self.cost = 10
+    class Spider_Cake(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Cake"
+            self.pickup_text = "Made with real spiders."
+            self.cost = 20

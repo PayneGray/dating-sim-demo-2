@@ -25,6 +25,7 @@ init -1 python hide:
     config.name = "inLOVE: An Undertale Dating Simulator (Demo)"
     config.version = "0.0"
 
+    config.layers = [ 'master', 'transient', 'screens', 'overlay','ui']
     #########################################
     # Themes
 
@@ -66,7 +67,7 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "backgrounds/inLOVE_Title.jpg",
+        mm_root = "backgrounds/ui/inLOVE_Title.jpg",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
@@ -91,8 +92,9 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    style.window.background = Frame("text-box2.png", 21, 21)
-    #style.frame.background = Frame("text-box3.png",21, 21)
+    style.window.background = Frame("UI/text-box2.png", 21, 21)
+    style.button.background = Frame("UI/text-box3.png",21, 21)
+    style.frame.background = Frame("UI/text-box3.png",21, 21)
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
 
@@ -168,13 +170,13 @@ init -1 python hide:
 
     ## Sounds that are used when button and imagemaps are clicked.
 
-    # style.button.activate_sound = "click.wav"
+    style.button.activate_sound = "audio/sfx/click.wav"
     # style.imagemap.activate_sound = "click.wav"
 
     ## Sounds that are used when entering and exiting the game menu.
 
-    # config.enter_sound = "click.wav"
-    # config.exit_sound = "click.wav"
+    config.enter_sound = "audio/sfx/click.wav"
+    config.exit_sound = "audio/sfx/click.wav"
 
     ## A sample sound that can be played to check the sound volume.
 
@@ -182,7 +184,7 @@ init -1 python hide:
 
     ## Music that is played while the user is at the main menu.
 
-    config.main_menu_music = "audio/Intro_1-2.mp3"
+    config.main_menu_music = "audio/music/Intro_1-2.mp3"
 
 
     #########################################
