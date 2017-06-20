@@ -191,10 +191,13 @@ screen main_menu():
 
         has vbox
 
-        textbutton _("Start Game") action Start()
+        textbutton _("Main Game") action Start()
+        # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Help") action Help()
+        # textbutton _("Feedback") action Jump("Feedback")
+        # textbutton _("Admin_Controls") action ShowMenu("admin_controls")
+        # textbutton _("Update") action Jump("updater")
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
@@ -204,7 +207,9 @@ init -2:
         size_group "mm"
 
 
-
+label Feedback:
+    $ webbrowser.open("https://goo.gl/forms/imVfvnNXL39SAD423")
+    return
 ##############################################################################
 # Navigation
 #
@@ -333,12 +338,50 @@ init -2:
     style file_picker_button is large_button
     style file_picker_text is large_button_text
 
+init -3:
+    $ ADMIN_ROOM_DESC = False
+
+#######################################
+# Admin Controls
+# Customer Screen made by Wilson to control finer parts of the game.  Should be taken out of public release
+#\
 
 ##############################################################################
 # Preferences
 #
 # Screen that allows the user to change the preferences.
 # http://www.renpy.org/doc/html/screen_special.html#prefereces
+
+screen admin_controls():
+    tag menu
+
+    use navigation
+
+    grid 3 1:
+
+        style_group "prefs"
+        xfill True
+
+        vbox:
+            frame:
+                style_group "pref"
+                has vbox
+                label _("Room Descriptions [ADMIN_ROOM_DESC]")
+                textbutton _("toggle") action ToggleVariable("ADMIN_ROOM_DESC")
+        vbox:
+            frame:
+                style_group "pref"
+                has vbox
+                label _("Test")
+                textbutton _("Test") action Notify('test')
+        vbox:
+            frame:
+                style_group "pref"
+                has vbox
+                label _("Test")
+                textbutton _("Test") action Notify('test')
+
+
 
 screen preferences():
 
